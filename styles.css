@@ -1,0 +1,343 @@
+/* Biến giao diện chung: nền, màu chữ, đường viền và bo góc */
+:root {
+    --bg: #f5f7fb;
+    --surface: #ffffff;
+    --primary: #2a6fdb;
+    --primary-dark: #1f57b8;
+    --danger: #dc3545;
+    --text: #22303c;
+    --muted: #5f6d7a;
+    --border: #dde3ed;
+    --radius: 16px;
+}
+
+/* Box-sizing toàn cục để padding và border được tính vào kích thước phần tử */
+* {
+    box-sizing: border-box;
+}
+
+/* Kiểu cơ bản cho trang: nền, phông chữ và màu chữ */
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--text);
+    background: radial-gradient(circle at top left, #eff7ff 0%, var(--bg) 45%);
+}
+
+/* Khung chứa chính của ứng dụng */
+.app-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 24px;
+}
+
+/* Header chính với bố cục linh hoạt */
+.app-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 24px;
+}
+
+/* Tiêu đề trang */
+.app-header h1 {
+    margin: 0 0 8px;
+    font-size: clamp(1.8rem, 2.2vw, 2.6rem);
+}
+
+/* Mô tả phụ trong header */
+.app-header p {
+    margin: 0;
+    color: var(--muted);
+}
+
+/* Lưới hiển thị các thẻ thống kê */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+/* Thẻ thông tin nhỏ (card) */
+.card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 18px 20px;
+    box-shadow: 0 10px 25px rgba(15, 41, 80, 0.06);
+}
+
+/* Tiêu đề bên trong thẻ */
+.card h2 {
+    margin: 0 0 10px;
+    font-size: 2rem;
+}
+
+/* Nội dung chữ trong thẻ */
+.card p {
+    margin: 0;
+    color: var(--muted);
+}
+
+/* Phần chứa bảng dữ liệu */
+.table-section {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px;
+    box-shadow: 0 10px 30px rgba(15, 41, 80, 0.05);
+}
+
+/* Kiểu cơ bản cho bảng phiếu mượn */
+.borrow-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 700px;
+}
+
+/* Kiểu ô bảng và đường kẻ phân tách */
+.borrow-table th,
+.borrow-table td {
+    padding: 12px 14px;
+    text-align: left;
+    border-bottom: 1px solid #e8edf4;
+    font-size: 0.95rem;
+}
+
+/* Dòng tiêu đề của bảng */
+.borrow-table th {
+    background: #f4f8ff;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    font-weight: 600;
+}
+
+/* Hiệu ứng khi rê chuột lên dòng bảng */
+.borrow-table tbody tr:hover {
+    background: #fbfcff;
+}
+
+/* Nút hành động chung */
+.action-btn {
+    border: none;
+    padding: 8px 12px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+/* Nút sửa */
+.edit-btn {
+    background: #0d6efd;
+    color: white;
+    margin-right: 6px;
+}
+
+/* Nút xóa */
+.delete-btn {
+    background: #dc3545;
+    color: white;
+}
+
+/* Kiểu chung cho các nút chính và phụ */
+.primary-btn,
+.secondary-btn {
+    border: none;
+    cursor: pointer;
+    border-radius: 12px;
+    padding: 12px 18px;
+    font-weight: 700;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+/* Nút hành động chính */
+.primary-btn {
+    background: var(--primary);
+    color: white;
+}
+
+/* Hiệu ứng hover cho nút chính */
+.primary-btn:hover {
+    background: var(--primary-dark);
+    transform: translateY(-1px);
+}
+
+/* Nút hành động thứ cấp */
+.secondary-btn {
+    background: #e9ecef;
+    color: var(--text);
+}
+
+/* Hover cho nút thứ cấp */
+.secondary-btn:hover {
+    background: #dfe4ea;
+}
+
+/* Thông báo khi không có dữ liệu */
+.empty-message {
+    margin: 12px 0 0;
+    color: var(--muted);
+}
+
+/* Lớp nền của modal */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(15, 41, 80, 0.45);
+    display: grid;
+    place-items: center;
+    padding: 16px;
+    z-index: 50;
+}
+
+/* Ẩn modal khi đóng */
+.modal.hidden {
+    display: none;
+}
+
+/* Nội dung chính bên trong modal */
+.modal-content {
+    width: min(100%, 900px);
+    max-height: 100vh;
+    overflow-y: auto;
+    background: var(--surface);
+    border-radius: 22px;
+    padding: 24px;
+    box-shadow: 0 24px 70px rgba(14, 37, 85, 0.2);
+}
+
+/* Header modal với tiêu đề và nút đóng */
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+/* Tiêu đề modal */
+.modal-header h2 {
+    margin: 0;
+}
+
+/* Nút đóng modal */
+.close-btn {
+    border: none;
+    background: transparent;
+    font-size: 1.8rem;
+    cursor: pointer;
+    color: var(--danger);
+}
+
+/* Lưới form nhập liệu dạng một cột để các trường bố trí dọc */
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 18px;
+}
+
+/* Nhóm trường form */
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Nhóm trường chiếm toàn bộ hàng */
+.form-group-full {
+    grid-column: span 2;
+}
+
+/* Nhãn form */
+label {
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+/* Kiểu các trường nhập liệu */
+input,
+select,
+textarea {
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 12px 14px;
+    font-size: 1rem;
+    background: #fff;
+    outline: none;
+    transition: border-color 0.15s ease;
+}
+
+/* Hiệu ứng khi focus vào trường nhập */
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: var(--primary);
+}
+
+/* Cho phép textarea thay đổi chiều cao */
+textarea {
+    resize: vertical;
+}
+
+/* Thông báo lỗi nhập liệu */
+.error-message {
+    margin-top: 6px;
+    color: #d63384;
+    font-size: 0.9rem;
+    min-height: 1.2em;
+}
+
+/* Phần chứa nút hành động trong modal */
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+
+/* Điều chỉnh bố cục cho màn hình trung bình */
+@media (max-width: 900px) {
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 18px;
+}
+
+    .borrow-table {
+        min-width: 0;
+    }
+}
+
+/* Điều chỉnh bố cục cho màn hình nhỏ */
+@media (max-width: 640px) {
+    .app-container {
+        padding: 16px;
+    }
+
+    .app-header {
+        align-items: stretch;
+    }
+
+    .app-header button {
+        width: 100%;
+    }
+
+    .borrow-table th,
+    .borrow-table td {
+        padding: 10px 8px;
+        font-size: 0.85rem;
+    }
+}
